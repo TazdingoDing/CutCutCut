@@ -52,17 +52,20 @@ directoryPath = os.getcwd()
 dataPath = os.path.join(directoryPath,"Original.csv")
 newPath = os.path.join(directoryPath,"Color.csv")
 items = ["SLA","SLB","TL","MTL","STL","SS","LS","Pedestrian","Tree","Building","Car","Bus"]
-objs = [Obj(item) for name in items]
+objs = [Obj(item) for item in items]
 
+
+print "loading file..."
 original = np.genfromtxt(dataPath, delimiter=",")
 colorData = []
 for i in range(original.shape[0]):
-	colorData.append(list(original[i]))
-	colorData[i] += [0,0,0,0]
+	tmp = list(original[i]) + [0,0,0,0]
+	colorData.append(tmp)
 #tag r g b
 indexTag = len(colorData[0]) - 4
 indexRGB = len(colorData[0]) - 3
 
+print "mapping..."
 for obj in objs:
 	for f in os.listdir(directoryPath):
 		if f.startswith(obj.name) and f.endswith(".csv"):
@@ -76,6 +79,8 @@ for obj in objs:
 				color = obj.color
 				for j in range(3):
 					colorData[toColorIndex][indexRGB + j] = color[j]
+	
+print "writing..."
 
 with open(newPath, "w") as f:
 	writer = c.writer(f)
