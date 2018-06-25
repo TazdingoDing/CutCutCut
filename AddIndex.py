@@ -1,15 +1,10 @@
 import numpy as np
 import csv as c
-dataPath = "./raw_xyz.csv"
-newPath = "./new.csv"
-cols = (0,1,2,3)
+import os
+dataPath = os.path.join(os.getcwd(),"Original.csv")
+newPath = os.path.join(os.getcwd(),"CutThis.csv")
 
-
-
-
-data= np.genfromtxt(dataPath, delimiter=",", usecols=cols)
-
-
+data= np.genfromtxt(dataPath, delimiter=",")
 with open(newPath, "w") as f:
 	writer = c.writer(f)
 	for i in range(data.shape[0]):
@@ -17,8 +12,4 @@ with open(newPath, "w") as f:
 		tmp.append(i)
 		writer.writerow(tmp)
 
-
-
-
-
-
+print "done"
