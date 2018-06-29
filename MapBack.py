@@ -44,6 +44,15 @@ class Obj():
 		elif (objName == "Bus"):
 			self.tag = 12
 			self.color = (64,64,64)
+		elif (objName == "MSLA"):
+			self.tag = 13
+			self.color = (255,255,255)
+		elif (objName == "Scooter"):
+			self.tag = 14
+			self.color = (0,0,64)
+		elif (objName == "Pole"):
+			self.tag = 15
+			self.color = (0,0,255)
 		else:
 			self.tag = 0
 			self.color = (0,0,0)
@@ -51,7 +60,7 @@ class Obj():
 directoryPath = os.getcwd()
 dataPath = os.path.join(directoryPath,"Original.csv")
 newPath = os.path.join(directoryPath,"Color.csv")
-items = ["SLA","SLB","TL","MTL","STL","SS","LS","Pedestrian","Tree","Building","Car","Bus"]
+items = ["SLA","SLB","TL","MTL","STL","SS","LS","Pedestrian","Tree","Building","Car","Bus","MSLA","Scooter","Pole"]
 objs = [Obj(item) for item in items]
 
 
